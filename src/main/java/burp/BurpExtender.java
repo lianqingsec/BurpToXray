@@ -2,7 +2,7 @@ package burp;
 
 import Tools.Constants;
 import Tools.ProxyToXray;
-import UI.MainUI;
+import UI.MyMainUI;
 import UI.MyMenuToXray;
 
 import javax.swing.*;
@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class BurpExtender implements IBurpExtender, IHttpListener, ITab, IContextMenuFactory {
     public static IBurpExtenderCallbacks appCallbacks;
-    MainUI mainUI;
+    MyMainUI myMainUI;
 
     @Override
     public void registerExtenderCallbacks(IBurpExtenderCallbacks iBurpExtenderCallbacks) {
@@ -32,7 +32,7 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab, IContex
         iBurpExtenderCallbacks.registerHttpListener(this::processHttpMessage);
 
         // 注册窗口监听
-        mainUI = new MainUI(this);
+        myMainUI = new MyMainUI(this);
         appCallbacks.addSuiteTab(this);
 
         // 注册右键菜单
@@ -87,7 +87,7 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab, IContex
     // 返回 JPanel 页面
     @Override
     public Component getUiComponent() {
-        return mainUI.$$$getRootComponent$$$();
+        return myMainUI.$$$getRootComponent$$$();
     }
 
 
