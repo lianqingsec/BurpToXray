@@ -41,13 +41,10 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab, IContex
     }
 
     // 转发请求的主要方法
-    public void sendRequest(boolean messageIsRequest, IHttpRequestResponse messageInfo) {
+    public void sendRequest(boolean messageIsRequest, IHttpRequestResponse messageInfo) throws Exception {
         if (messageIsRequest) {
-            // 获取请求信息
-            byte[] request = messageInfo.getRequest();
-            String reqs = new String(request, 0, request.length);
             try {
-                ProxyToXray.reqProxy(reqs);
+                ProxyToXray.reqProxy(messageInfo);
             } catch (IOException e) {
                 appCallbacks.printOutput("Send Failed!");
             }
@@ -66,14 +63,18 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab, IContex
             // 判断是否是响应，且该代码作用域为：REPEATER、INTRUDER、PROXY（分别对应toolFlag 64、32、4）
             // 判断是请求还是响应，响应不发送
             // 判断是否允许全流量监听
-            if (Constants.allProxy) {
-                sendRequest(messageIsRequest, messageInfo);
-            } else if (Constants.RepeaterProxy && (toolFlag == 64)) {
-                sendRequest(messageIsRequest, messageInfo);
-            } else if (Constants.Proxy && (toolFlag == 4)) {
-                sendRequest(messageIsRequest, messageInfo);
-            } else if (Constants.Intruder && (toolFlag == 32)) {
-                sendRequest(messageIsRequest, messageInfo);
+            try {
+                if (Constants.allProxy) {
+                    sendRequest(messageIsRequest, messageInfo);
+                } else if (Constants.RepeaterProxy && (toolFlag == 64)) {
+                    sendRequest(messageIsRequest, messageInfo);
+                } else if (Constants.Proxy && (toolFlag == 4)) {
+                    sendRequest(messageIsRequest, messageInfo);
+                } else if (Constants.Intruder && (toolFlag == 32)) {
+                    sendRequest(messageIsRequest, messageInfo);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }

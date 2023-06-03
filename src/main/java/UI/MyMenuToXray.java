@@ -62,8 +62,8 @@ public class MyMenuToXray {
 //            // 判断是否开启了，自主发送
             if (Constants.sendProxy) {
                 try {
-                    ProxyToXray.reqProxy(new String(bytes, 0, bytes.length));
-                } catch (IOException ex) {
+                    ProxyToXray.reqProxy(inv.getSelectedMessages()[0]);
+                } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             }

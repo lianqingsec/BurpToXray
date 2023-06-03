@@ -37,7 +37,6 @@ public class MyMainUI extends JPanel {
     private JTextField ProxyPort;
     private JButton StartButton;
     private JCheckBox AllCheckBox;
-    private JCheckBox sendProxyCheckBox;
     private JCheckBox ProxyCheckBox;
     private JCheckBox RepeaterCheckBox;
     private JCheckBox IntruderCheckBox;
@@ -94,14 +93,11 @@ public class MyMainUI extends JPanel {
             Constants.Proxy = Boolean.parseBoolean((String) properties.get("Proxy"));
             Constants.RepeaterProxy = Boolean.parseBoolean((String) properties.get("repeaterProxy"));
             Constants.Intruder = Boolean.parseBoolean((String) properties.get("intruderProxy"));
-            Constants.sendProxy = Boolean.parseBoolean((String) properties.get("sendProxy"));
+            Constants.sendProxy = true;
 
             // 根据配置文件进行勾选框
             if (Constants.allProxy) {
                 AllCheckBox.setSelected(true);
-            }
-            if (Constants.sendProxy) {
-                sendProxyCheckBox.setSelected(true);
             }
             if (Constants.Proxy) {
                 ProxyCheckBox.setSelected(true);
@@ -250,7 +246,7 @@ public class MyMainUI extends JPanel {
         boolean proxy = ProxyCheckBox.isSelected();
         boolean repeater = RepeaterCheckBox.isSelected();
         boolean intruder = IntruderCheckBox.isSelected();
-        boolean sendProxy = sendProxyCheckBox.isSelected();
+
 
         // 写配置文件
         Properties properties = new Properties();
@@ -260,7 +256,6 @@ public class MyMainUI extends JPanel {
         properties.setProperty("Proxy", String.valueOf(proxy));
         properties.setProperty("repeaterProxy", String.valueOf(repeater));
         properties.setProperty("intruderProxy", String.valueOf(intruder));
-        properties.setProperty("sendProxy", String.valueOf(sendProxy));
 
 
         // 全局变量设置
@@ -348,7 +343,6 @@ public class MyMainUI extends JPanel {
         ProxyPort = new JTextField();
         StartButton = new JButton();
         AllCheckBox = new JCheckBox();
-        sendProxyCheckBox = new JCheckBox();
         ProxyCheckBox = new JCheckBox();
         RepeaterCheckBox = new JCheckBox();
         IntruderCheckBox = new JCheckBox();
@@ -438,31 +432,26 @@ public class MyMainUI extends JPanel {
                 proxyToXray.add(AllCheckBox);
                 AllCheckBox.setBounds(new Rectangle(new Point(70, 140), AllCheckBox.getPreferredSize()));
 
-                //---- sendProxyCheckBox ----
-                sendProxyCheckBox.setText("\u76d1\u63a7 \u81ea\u53d1 \u6d41\u91cf");
-                proxyToXray.add(sendProxyCheckBox);
-                sendProxyCheckBox.setBounds(70, 165, 135, 22);
-
                 //---- ProxyCheckBox ----
                 ProxyCheckBox.setText("\u76d1\u63a7 Proxy");
                 proxyToXray.add(ProxyCheckBox);
-                ProxyCheckBox.setBounds(70, 190, 93, 22);
+                ProxyCheckBox.setBounds(70, 160, 93, 22);
 
                 //---- RepeaterCheckBox ----
                 RepeaterCheckBox.setText("\u76d1\u63a7 Repeater");
                 proxyToXray.add(RepeaterCheckBox);
-                RepeaterCheckBox.setBounds(70, 215, 110, 22);
+                RepeaterCheckBox.setBounds(70, 180, 110, 22);
 
                 //---- IntruderCheckBox ----
                 IntruderCheckBox.setText("\u76d1\u63a7 Intruder");
                 proxyToXray.add(IntruderCheckBox);
-                IntruderCheckBox.setBounds(70, 240, 105, 22);
+                IntruderCheckBox.setBounds(70, 200, 105, 22);
 
                 //---- SaveButtonSeting ----
                 SaveButtonSeting.setText("\u4fdd\u5b58\u914d\u7f6e");
                 SaveButtonSeting.addActionListener(e -> SaveButtonSeting(e));
                 proxyToXray.add(SaveButtonSeting);
-                SaveButtonSeting.setBounds(70, 265, 158, 30);
+                SaveButtonSeting.setBounds(70, 230, 158, 30);
 
                 {
                     // compute preferred size
