@@ -1,0 +1,86 @@
+JFDML JFormDesigner: "8.0.4.0.266" Java: "11.0.12" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+				name: "panel1"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": "调用工具路径："
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"width": 120
+					"height": 30
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "调用工具参数"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"width": 120
+					"height": 30
+					"y": 65
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": "请求路径"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"width": 120
+					"height": 30
+					"y": 135
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button1"
+					"text": "确定"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "StartCMD", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 160
+					"y": 215
+					"width": 85
+					"height": 30
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button2"
+					"text": "取消"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "exit", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"width": 85
+					"height": 30
+					"x": 365
+					"y": 215
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "ToolPath"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 120
+					"width": 475
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "ToolArgs"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"width": 475
+					"height": 30
+					"x": 120
+					"y": 70
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "endCMD"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"width": 475
+					"height": 30
+					"x": 120
+					"y": 135
+				} )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 10
+				"y": 10
+				"width": 615
+				"height": 265
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 50, 95 )
+			"size": new java.awt.Dimension( 640, 330 )
+		} )
+	}
+}

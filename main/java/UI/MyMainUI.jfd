@@ -1,0 +1,425 @@
+JFDML JFormDesigner: "8.1.0.0.283" Java: "11.0.12" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+				name: "panel2"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+					name: "proxyToXray"
+					"border": new javax.swing.border.CompoundBorder( new javax.swing.border.TitledBorder( "流量转发到 Xray 配置区" ), sfield com.jgoodies.forms.factories.Borders DLU2_BORDER )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label1"
+						"text": "代理 IP"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 70
+						"y": 35
+						"width": 60
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label2"
+						"text": "代理 PORT"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 75
+						"height": 17
+						"x": 70
+						"y": 70
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "ProxyIP"
+						"text": "127.0.0.1"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 170
+						"y": 30
+						"height": 25
+						"width": 105
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "ProxyPort"
+						"text": "9006"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 105
+						"height": 25
+						"x": 170
+						"y": 65
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "StartButton"
+						"text": "开启流量转发"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "Start", true ) )
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "Start", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 70
+						"y": 100
+						"width": 158
+					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "AllCheckBox"
+						"text": "监控 All 流量"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 70
+						"y": 140
+					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "ProxyCheckBox"
+						"text": "监控 Proxy"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 93
+						"height": 22
+						"x": 70
+						"y": 160
+					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "RepeaterCheckBox"
+						"text": "监控 Repeater"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 110
+						"height": 22
+						"x": 70
+						"y": 180
+					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "IntruderCheckBox"
+						"text": "监控 Intruder"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 105
+						"height": 22
+						"x": 70
+						"y": 200
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "SaveButtonSeting"
+						"text": "保存配置"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "SaveButtonSeting", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 158
+						"height": 30
+						"x": 70
+						"y": 230
+					} )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"width": 330
+					"height": 350
+					"x": 1560
+					"y": 20
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+					name: "QuickCall"
+					"border": new javax.swing.border.CompoundBorder( new javax.swing.border.TitledBorder( "快捷调用全局变量配置区" ), sfield com.jgoodies.forms.factories.Borders DLU2_BORDER )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label3"
+						"text": "调用默认终端程序路径："
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 5
+						"y": 35
+						"width": 145
+						"height": 30
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "cmdPathTXT"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 155
+						"y": 35
+						"width": 295
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label4"
+						"text": "python 程序路径："
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 130
+						"height": 30
+						"x": 5
+						"y": 95
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "pythonPathTXT"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 295
+						"height": 30
+						"x": 155
+						"y": 100
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label5"
+						"text": "选择开启哪几个快捷调用"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 195
+						"y": 150
+						"width": 175
+						"height": 40
+					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "checkBox1"
+						"text": "快捷调用一"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 65
+						"y": 205
+						"width": 120
+					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "checkBox2"
+						"text": "快捷调用二"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 120
+						"height": 22
+						"x": 205
+						"y": 205
+					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "checkBox3"
+						"text": "快捷调用三"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 120
+						"height": 22
+						"x": 360
+						"y": 205
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button1"
+						"text": "保存当前设置"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "SaveButtonSeting", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 160
+						"y": 260
+						"width": 180
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button2"
+						"text": "打开"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button2", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 470
+						"y": 35
+						"width": 90
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button3"
+						"text": "打开"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button3", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 90
+						"height": 30
+						"x": 470
+						"y": 100
+					} )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 35
+					"y": 20
+					"height": 320
+					"width": 575
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+					name: "QuickCall2"
+					"border": new javax.swing.border.CompoundBorder( new javax.swing.border.TitledBorder( "快捷调用配置区 一" ), sfield com.jgoodies.forms.factories.Borders DLU2_BORDER )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label6"
+						"text": "调用程序路径："
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 5
+						"y": 50
+						"width": 130
+						"height": 30
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "callPath"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 115
+						"y": 50
+						"width": 325
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button4"
+						"text": "打开"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button4", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 455
+						"y": 50
+						"width": 90
+					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "checkBox4"
+						"text": "是否为 python 程序"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 220
+						"y": 120
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label7"
+						"text": "调用参数："
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 130
+						"height": 30
+						"x": 5
+						"y": 195
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "callArgs"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 325
+						"height": 30
+						"x": 115
+						"y": 195
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button6"
+						"text": "保存当前设置"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "SaveButtonSeting", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 180
+						"height": 30
+						"x": 205
+						"y": 260
+					} )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"width": 575
+					"height": 320
+					"x": 40
+					"y": 390
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+					name: "QuickCall3"
+					"border": new javax.swing.border.CompoundBorder( new javax.swing.border.TitledBorder( "快捷调用配置区 二" ), sfield com.jgoodies.forms.factories.Borders DLU2_BORDER )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label8"
+						"text": "调用程序路径："
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 5
+						"y": 50
+						"width": 130
+						"height": 30
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "callPath2"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 115
+						"y": 50
+						"width": 325
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button5"
+						"text": "打开"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button4", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 455
+						"y": 50
+						"width": 90
+					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "checkBox5"
+						"text": "是否为 python 程序"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 220
+						"y": 120
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label9"
+						"text": "调用参数："
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 130
+						"height": 30
+						"x": 5
+						"y": 195
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "callArgs2"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 325
+						"height": 30
+						"x": 115
+						"y": 195
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button7"
+						"text": "保存当前设置"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "SaveButtonSeting", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 180
+						"height": 30
+						"x": 205
+						"y": 260
+					} )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"width": 575
+					"height": 320
+					"x": 675
+					"y": 390
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+					name: "QuickCall4"
+					"border": new javax.swing.border.CompoundBorder( new javax.swing.border.TitledBorder( "快捷调用配置区 三" ), sfield com.jgoodies.forms.factories.Borders DLU2_BORDER )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label10"
+						"text": "调用程序路径："
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 5
+						"y": 50
+						"width": 130
+						"height": 30
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "callPath3"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 115
+						"y": 50
+						"width": 325
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button8"
+						"text": "打开"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button4", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 455
+						"y": 50
+						"width": 90
+					} )
+					add( new FormComponent( "javax.swing.JCheckBox" ) {
+						name: "checkBox6"
+						"text": "是否为 python 程序"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 220
+						"y": 120
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label11"
+						"text": "调用参数："
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 130
+						"height": 30
+						"x": 5
+						"y": 195
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "callArgs3"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 325
+						"height": 30
+						"x": 115
+						"y": 195
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button9"
+						"text": "保存当前设置"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "SaveButtonSeting", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 180
+						"height": 30
+						"x": 205
+						"y": 260
+					} )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"width": 575
+					"height": 320
+					"x": 1320
+					"y": 390
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "West"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 5 )
+			"size": new java.awt.Dimension( 1920, 730 )
+		} )
+	}
+}
