@@ -10,7 +10,8 @@
 
 # 2023-06-11 更新
 简单的优化了一下界面
-添加了历史转发记录的功能，并清除重复的转发请求记录，减少数据的重复性
+		添加了历史转发记录的功能，并清除重复的转发请求记录，减少数据的重复性
+![image-20230611213954755](https://gitee.com/lianqing_xyz/md_image02/raw/master/img/image-20230611213954755.png)
 
 # 2023-06-09 更新
 
@@ -58,7 +59,6 @@
 ## 使用截图
 
 ![image-20230521210854011](https://gitee.com/lianqing_xyz/md_image02/raw/master/img/image-20230521210854011.png)
-
 
 
 
