@@ -8,10 +8,9 @@ import burp.IRequestInfo;
 import javax.net.ssl.*;
 import java.io.*;
 import java.net.*;
-import java.nio.charset.StandardCharsets;
+import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +26,7 @@ public class ProxyToXray {
     }
 
     public static void reqProxy(IHttpRequestResponse HttpRequestResponse) throws Exception {
-        Map<String, String> response = Proxy(HttpRequestResponse);
+        Proxy(HttpRequestResponse);
     }
 
     public static Map<String, String> Proxy(IHttpRequestResponse requestResponse) throws InterruptedException {
@@ -49,7 +48,7 @@ public class ProxyToXray {
                 e.printStackTrace();
             }
         }
-        //BurpExtender.stderr.println("[+] url: " + resInfo.getUrl());
+
         headers = reqInfo.getHeaders();
         url = reqInfo.getUrl().toString();
         if (httpService.getProtocol().equals("https")) {
@@ -81,6 +80,7 @@ public class ProxyToXray {
             Proxy proxy1 = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxy, port));
             //设置代理
             httpsConn = (HttpsURLConnection) urlClient.openConnection(proxy1);
+
 
             httpsConn.setSSLSocketFactory(sc.getSocketFactory());
             httpsConn.setHostnameVerifier(new TrustAnyHostnameVerifier());
@@ -145,7 +145,7 @@ public class ProxyToXray {
 
         } catch (Exception e) {
             e.printStackTrace();
-            BurpExtender.appCallbacks.printOutput("\n[*] " + e.getMessage() + "\n");
+            BurpExtender.appCallbacks.printOutput("[*] " + e.getMessage());
             result = e.getMessage();
         } finally {
             try {
@@ -170,7 +170,7 @@ public class ProxyToXray {
             status = String.valueOf(httpsConn.getResponseCode());
         } catch (IOException e) {
             status = e.getMessage();
-            BurpExtender.appCallbacks.printOutput("\n[*] " + e.getMessage() + "\n");
+            BurpExtender.appCallbacks.printOutput("[*] " + e.getMessage());
         }
 
         mapResult.put("status", status);
@@ -290,7 +290,7 @@ public class ProxyToXray {
             status = String.valueOf(httpsConn.getResponseCode());
         } catch (Exception e) {
             //e.printStackTrace();
-            BurpExtender.appCallbacks.printOutput("\n[*] " + e.getMessage() + "\n");
+            BurpExtender.appCallbacks.printOutput("[*] " + e.getMessage());
             result = e.getMessage();
         } finally {
             try {
@@ -315,7 +315,7 @@ public class ProxyToXray {
             status = String.valueOf(httpsConn.getResponseCode());
         } catch (IOException e) {
             status = e.getMessage();
-            BurpExtender.appCallbacks.printOutput("\n[*] " + e.getMessage() + "\n");
+            BurpExtender.appCallbacks.printOutput("[*] " + e.getMessage());
         }
         mapResult.put("status", status);
         mapResult.put("header", rspHeader);

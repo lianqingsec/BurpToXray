@@ -38,14 +38,10 @@ public class MainUI {
             Constants.Proxy = Boolean.parseBoolean((String) properties.get("Proxy"));
             Constants.RepeaterProxy = Boolean.parseBoolean((String) properties.get("repeaterProxy"));
             Constants.Intruder = Boolean.parseBoolean((String) properties.get("intruderProxy"));
-            Constants.sendProxy = Boolean.parseBoolean((String) properties.get("sendProxy"));
 
             // 根据配置文件进行勾选框
             if (Constants.allProxy) {
                 AllCheckBox.setSelected(true);
-            }
-            if (Constants.sendProxy) {
-                sendProxyCheckBox.setSelected(true);
             }
             if (Constants.Proxy) {
                 ProxyCheckBox.setSelected(true);

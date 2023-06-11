@@ -99,11 +99,22 @@ new FormModel {
 						"x": 70
 						"y": 230
 					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "SaveButtonSeting2"
+						"text": "清空历史"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "SaveButtonSeting", true ) )
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "clearHistry", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 158
+						"height": 30
+						"x": 75
+						"y": 280
+					} )
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"width": 330
 					"height": 350
 					"x": 1560
-					"y": 20
+					"y": 50
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 					name: "QuickCall"
@@ -180,6 +191,7 @@ new FormModel {
 						name: "button1"
 						"text": "保存当前设置"
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "SaveButtonSeting", true ) )
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "SaveButtonSeting", true ) )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 160
 						"y": 260
@@ -206,7 +218,7 @@ new FormModel {
 					} )
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 35
-					"y": 20
+					"y": 50
 					"height": 320
 					"width": 575
 				} )
@@ -275,8 +287,8 @@ new FormModel {
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"width": 575
 					"height": 320
-					"x": 40
-					"y": 390
+					"x": 35
+					"y": 650
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 					name: "QuickCall3"
@@ -343,8 +355,8 @@ new FormModel {
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"width": 575
 					"height": 320
-					"x": 675
-					"y": 390
+					"x": 680
+					"y": 650
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 					name: "QuickCall4"
@@ -412,14 +424,25 @@ new FormModel {
 					"width": 575
 					"height": 320
 					"x": 1320
-					"y": 390
+					"y": 650
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane1"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "hisory"
+					} )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 640
+					"y": 50
+					"width": 895
+					"height": 565
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "West"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 5 )
-			"size": new java.awt.Dimension( 1920, 730 )
+			"size": new java.awt.Dimension( 1920, 1020 )
 		} )
 	}
 }

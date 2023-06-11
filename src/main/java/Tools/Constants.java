@@ -15,14 +15,13 @@ public class Constants {
     // 是否开启监听
     public static boolean startProxy = false;
     public static boolean allProxy = false;
-    public static boolean sendProxy = true;
     public static boolean Proxy = false;
     public static boolean RepeaterProxy = true;
     public static boolean Intruder = false;
 
     // 全局变量设置区
-    public static String  pathCmdText = "";
-    public static String  pythonPathText = "";
+    public static String pathCmdText = "";
+    public static String pythonPathText = "";
     public static boolean Startcall01 = true;
     public static boolean Startcall02 = true;
     public static boolean Startcall03 = true;
@@ -41,7 +40,6 @@ public class Constants {
     public static String callPathText3 = "";
     public static String callArgsText3 = "";
     public static boolean selected043 = true;
-
 
 
 }

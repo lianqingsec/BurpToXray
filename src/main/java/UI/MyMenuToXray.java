@@ -60,13 +60,16 @@ public class MyMenuToXray {
 
 
 //            // 判断是否开启了，自主发送
-            if (Constants.sendProxy) {
-                try {
-                    ProxyToXray.reqProxy(inv.getSelectedMessages()[0]);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+
+            try {
+                ProxyToXray.reqProxy(inv.getSelectedMessages()[0]);
+                String url = BurpExtender.appCallbacks.getHelpers().analyzeRequest(inv.getSelectedMessages()[0].getHttpService(), inv.getSelectedMessages()[0].getRequest()).getUrl().toString();
+                MyMainUI.setHisory(url, "自发");
+                BurpExtender.appCallbacks.printOutput(inv.getSelectedMessages()[0].getHttpService().getHost());
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
+
         }
     }
 

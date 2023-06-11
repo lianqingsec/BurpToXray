@@ -17,9 +17,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 import com.jgoodies.forms.factories.*;
 
@@ -28,6 +31,10 @@ import com.jgoodies.forms.factories.*;
  */
 public class MyMainUI extends JPanel {
     private BurpExtender burpExtender;
+    static DefaultTableModel tableModel;
+    // 存放历史记录的 HashMap
+    public static HashMap<Integer, String[]> hisoryList = new HashMap();
+
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     private JPanel panel2;
     private JPanel proxyToXray;
@@ -41,6 +48,7 @@ public class MyMainUI extends JPanel {
     private JCheckBox RepeaterCheckBox;
     private JCheckBox IntruderCheckBox;
     private JButton SaveButtonSeting;
+    private JButton SaveButtonSeting2;
     private JPanel QuickCall;
     private JLabel label3;
     private JTextField cmdPathTXT;
@@ -77,7 +85,8 @@ public class MyMainUI extends JPanel {
     private JLabel label11;
     private JTextField callArgs3;
     private JButton button9;
-
+    private JScrollPane scrollPane1;
+    private static JTable hisory;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
     public void init() {
 
@@ -93,7 +102,6 @@ public class MyMainUI extends JPanel {
             Constants.Proxy = Boolean.parseBoolean((String) properties.get("Proxy"));
             Constants.RepeaterProxy = Boolean.parseBoolean((String) properties.get("repeaterProxy"));
             Constants.Intruder = Boolean.parseBoolean((String) properties.get("intruderProxy"));
-            Constants.sendProxy = true;
 
             // 根据配置文件进行勾选框
             if (Constants.allProxy) {
@@ -186,15 +194,57 @@ public class MyMainUI extends JPanel {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        // 初始化历史记录框
+        // 创建表格模型
+        hisoryInit();
     }
 
+    public static void hisoryInit() {
+        tableModel = new DefaultTableModel();
+        tableModel.addColumn("序号");
+        tableModel.addColumn("URL");
+        tableModel.addColumn("来自");
+
+        hisory.setModel(tableModel);
+        // 测试数据
+//        for (int i = 0; i < 200; i++) {
+//            String[] testDate = {"http://www.baidu.com", "自发"};
+//            hisoryList.put(hisoryList.size() + 1, testDate);
+//        }
+        try {
+            for (Map.Entry<Integer, String[]> Entry : hisoryList.entrySet()) {
+                String[] mergedArray = new String[Entry.getValue().length + 1];
+                mergedArray[0] = String.valueOf(Entry.getKey());
+                System.arraycopy(Entry.getValue(), 0, mergedArray, 1, Entry.getValue().length);
+
+                tableModel.addRow(mergedArray);
+                tableModel.fireTableDataChanged();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void setHisory(String url, String source) {
+        boolean isCz = false;
+        // 判断map中是否存在这个url了
+        for (Map.Entry<Integer, String[]> entry : hisoryList.entrySet()) {
+            if (entry.getValue()[0].equals(url)) {
+                isCz = true;
+            }
+        }
+        if (!isCz) {
+            String[] testDate = {url, source};
+            hisoryList.put(hisoryList.size() + 1, testDate);
+        }
+        // 更新
+        hisoryInit();
+    }
 
     public MyMainUI(BurpExtender burp) {
         burpExtender = burp;
         // 初始化
         init();
-
-
     }
 
     // 全局变量cmd终端路径选择按钮
@@ -236,7 +286,9 @@ public class MyMainUI extends JPanel {
         }
     }
 
-
+    /*
+     * 转发设置的保存
+     * */
     private void SaveButtonSeting(ActionEvent e) {
         // 读取当前的所有配置并写入文件
         String IP = ProxyIP.getText();
@@ -328,6 +380,12 @@ public class MyMainUI extends JPanel {
         }
     }
 
+    // 清空历史记录
+    private void clearHistry(ActionEvent e) {
+        hisoryList.clear();
+        hisoryInit();
+    }
+
     {
         initComponents();
     }
@@ -347,6 +405,7 @@ public class MyMainUI extends JPanel {
         RepeaterCheckBox = new JCheckBox();
         IntruderCheckBox = new JCheckBox();
         SaveButtonSeting = new JButton();
+        SaveButtonSeting2 = new JButton();
         QuickCall = new JPanel();
         label3 = new JLabel();
         cmdPathTXT = new JTextField();
@@ -383,6 +442,8 @@ public class MyMainUI extends JPanel {
         label11 = new JLabel();
         callArgs3 = new JTextField();
         button9 = new JButton();
+        scrollPane1 = new JScrollPane();
+        hisory = new JTable();
 
         //======== this ========
         setLayout(new BorderLayout());
@@ -394,8 +455,8 @@ public class MyMainUI extends JPanel {
             //======== proxyToXray ========
             {
                 proxyToXray.setBorder(new CompoundBorder(
-                        new TitledBorder("\u6d41\u91cf\u8f6c\u53d1\u5230 Xray \u914d\u7f6e\u533a"),
-                        Borders.DLU2_BORDER));
+                    new TitledBorder("\u6d41\u91cf\u8f6c\u53d1\u5230 Xray \u914d\u7f6e\u533a"),
+                    Borders.DLU2_BORDER));
                 proxyToXray.setLayout(null);
 
                 //---- label1 ----
@@ -421,9 +482,9 @@ public class MyMainUI extends JPanel {
                 //---- StartButton ----
                 StartButton.setText("\u5f00\u542f\u6d41\u91cf\u8f6c\u53d1");
                 StartButton.addActionListener(e -> {
-                    Start(e);
-                    Start(e);
-                });
+			Start(e);
+			Start(e);
+		});
                 proxyToXray.add(StartButton);
                 StartButton.setBounds(70, 100, 158, StartButton.getPreferredSize().height);
 
@@ -453,10 +514,19 @@ public class MyMainUI extends JPanel {
                 proxyToXray.add(SaveButtonSeting);
                 SaveButtonSeting.setBounds(70, 230, 158, 30);
 
+                //---- SaveButtonSeting2 ----
+                SaveButtonSeting2.setText("\u6e05\u7a7a\u5386\u53f2");
+                SaveButtonSeting2.addActionListener(e -> {
+			SaveButtonSeting(e);
+			clearHistry(e);
+		});
+                proxyToXray.add(SaveButtonSeting2);
+                SaveButtonSeting2.setBounds(75, 280, 158, 30);
+
                 {
                     // compute preferred size
                     Dimension preferredSize = new Dimension();
-                    for (int i = 0; i < proxyToXray.getComponentCount(); i++) {
+                    for(int i = 0; i < proxyToXray.getComponentCount(); i++) {
                         Rectangle bounds = proxyToXray.getComponent(i).getBounds();
                         preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
                         preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
@@ -469,13 +539,13 @@ public class MyMainUI extends JPanel {
                 }
             }
             panel2.add(proxyToXray);
-            proxyToXray.setBounds(1560, 20, 330, 350);
+            proxyToXray.setBounds(1560, 50, 330, 350);
 
             //======== QuickCall ========
             {
                 QuickCall.setBorder(new CompoundBorder(
-                        new TitledBorder("\u5feb\u6377\u8c03\u7528\u5168\u5c40\u53d8\u91cf\u914d\u7f6e\u533a"),
-                        Borders.DLU2_BORDER));
+                    new TitledBorder("\u5feb\u6377\u8c03\u7528\u5168\u5c40\u53d8\u91cf\u914d\u7f6e\u533a"),
+                    Borders.DLU2_BORDER));
                 QuickCall.setLayout(null);
 
                 //---- label3 ----
@@ -514,7 +584,10 @@ public class MyMainUI extends JPanel {
 
                 //---- button1 ----
                 button1.setText("\u4fdd\u5b58\u5f53\u524d\u8bbe\u7f6e");
-                button1.addActionListener(e -> SaveButtonSeting(e));
+                button1.addActionListener(e -> {
+			SaveButtonSeting(e);
+			SaveButtonSeting(e);
+		});
                 QuickCall.add(button1);
                 button1.setBounds(160, 260, 180, button1.getPreferredSize().height);
 
@@ -533,7 +606,7 @@ public class MyMainUI extends JPanel {
                 {
                     // compute preferred size
                     Dimension preferredSize = new Dimension();
-                    for (int i = 0; i < QuickCall.getComponentCount(); i++) {
+                    for(int i = 0; i < QuickCall.getComponentCount(); i++) {
                         Rectangle bounds = QuickCall.getComponent(i).getBounds();
                         preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
                         preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
@@ -546,13 +619,13 @@ public class MyMainUI extends JPanel {
                 }
             }
             panel2.add(QuickCall);
-            QuickCall.setBounds(35, 20, 575, 320);
+            QuickCall.setBounds(35, 50, 575, 320);
 
             //======== QuickCall2 ========
             {
                 QuickCall2.setBorder(new CompoundBorder(
-                        new TitledBorder("\u5feb\u6377\u8c03\u7528\u914d\u7f6e\u533a \u4e00"),
-                        Borders.DLU2_BORDER));
+                    new TitledBorder("\u5feb\u6377\u8c03\u7528\u914d\u7f6e\u533a \u4e00"),
+                    Borders.DLU2_BORDER));
                 QuickCall2.setLayout(null);
 
                 //---- label6 ----
@@ -589,7 +662,7 @@ public class MyMainUI extends JPanel {
                 {
                     // compute preferred size
                     Dimension preferredSize = new Dimension();
-                    for (int i = 0; i < QuickCall2.getComponentCount(); i++) {
+                    for(int i = 0; i < QuickCall2.getComponentCount(); i++) {
                         Rectangle bounds = QuickCall2.getComponent(i).getBounds();
                         preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
                         preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
@@ -602,13 +675,13 @@ public class MyMainUI extends JPanel {
                 }
             }
             panel2.add(QuickCall2);
-            QuickCall2.setBounds(40, 390, 575, 320);
+            QuickCall2.setBounds(35, 650, 575, 320);
 
             //======== QuickCall3 ========
             {
                 QuickCall3.setBorder(new CompoundBorder(
-                        new TitledBorder("\u5feb\u6377\u8c03\u7528\u914d\u7f6e\u533a \u4e8c"),
-                        Borders.DLU2_BORDER));
+                    new TitledBorder("\u5feb\u6377\u8c03\u7528\u914d\u7f6e\u533a \u4e8c"),
+                    Borders.DLU2_BORDER));
                 QuickCall3.setLayout(null);
 
                 //---- label8 ----
@@ -645,7 +718,7 @@ public class MyMainUI extends JPanel {
                 {
                     // compute preferred size
                     Dimension preferredSize = new Dimension();
-                    for (int i = 0; i < QuickCall3.getComponentCount(); i++) {
+                    for(int i = 0; i < QuickCall3.getComponentCount(); i++) {
                         Rectangle bounds = QuickCall3.getComponent(i).getBounds();
                         preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
                         preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
@@ -658,13 +731,13 @@ public class MyMainUI extends JPanel {
                 }
             }
             panel2.add(QuickCall3);
-            QuickCall3.setBounds(675, 390, 575, 320);
+            QuickCall3.setBounds(680, 650, 575, 320);
 
             //======== QuickCall4 ========
             {
                 QuickCall4.setBorder(new CompoundBorder(
-                        new TitledBorder("\u5feb\u6377\u8c03\u7528\u914d\u7f6e\u533a \u4e09"),
-                        Borders.DLU2_BORDER));
+                    new TitledBorder("\u5feb\u6377\u8c03\u7528\u914d\u7f6e\u533a \u4e09"),
+                    Borders.DLU2_BORDER));
                 QuickCall4.setLayout(null);
 
                 //---- label10 ----
@@ -701,7 +774,7 @@ public class MyMainUI extends JPanel {
                 {
                     // compute preferred size
                     Dimension preferredSize = new Dimension();
-                    for (int i = 0; i < QuickCall4.getComponentCount(); i++) {
+                    for(int i = 0; i < QuickCall4.getComponentCount(); i++) {
                         Rectangle bounds = QuickCall4.getComponent(i).getBounds();
                         preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
                         preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
@@ -714,12 +787,19 @@ public class MyMainUI extends JPanel {
                 }
             }
             panel2.add(QuickCall4);
-            QuickCall4.setBounds(1320, 390, 575, 320);
+            QuickCall4.setBounds(1320, 650, 575, 320);
+
+            //======== scrollPane1 ========
+            {
+                scrollPane1.setViewportView(hisory);
+            }
+            panel2.add(scrollPane1);
+            scrollPane1.setBounds(640, 50, 895, 565);
 
             {
                 // compute preferred size
                 Dimension preferredSize = new Dimension();
-                for (int i = 0; i < panel2.getComponentCount(); i++) {
+                for(int i = 0; i < panel2.getComponentCount(); i++) {
                     Rectangle bounds = panel2.getComponent(i).getBounds();
                     preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
                     preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);

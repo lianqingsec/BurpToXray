@@ -65,12 +65,21 @@ public class BurpExtender implements IBurpExtender, IHttpListener, ITab, IContex
             // 判断是否允许全流量监听
             try {
                 if (Constants.allProxy) {
+                    String url = BurpExtender.appCallbacks.getHelpers().analyzeRequest(messageInfo.getHttpService(), messageInfo.getRequest()).getUrl().toString();
+                    MyMainUI.setHisory(url, "全流量监听");
                     sendRequest(messageIsRequest, messageInfo);
                 } else if (Constants.RepeaterProxy && (toolFlag == 64)) {
+
+                    String url = BurpExtender.appCallbacks.getHelpers().analyzeRequest(messageInfo.getHttpService(), messageInfo.getRequest()).getUrl().toString();
+                    MyMainUI.setHisory(url, "REPEATER");
                     sendRequest(messageIsRequest, messageInfo);
                 } else if (Constants.Proxy && (toolFlag == 4)) {
+                    String url = BurpExtender.appCallbacks.getHelpers().analyzeRequest(messageInfo.getHttpService(), messageInfo.getRequest()).getUrl().toString();
+                    MyMainUI.setHisory(url, "PROXY");
                     sendRequest(messageIsRequest, messageInfo);
                 } else if (Constants.Intruder && (toolFlag == 32)) {
+                    String url = BurpExtender.appCallbacks.getHelpers().analyzeRequest(messageInfo.getHttpService(), messageInfo.getRequest()).getUrl().toString();
+                    MyMainUI.setHisory(url, "INTRUDER");
                     sendRequest(messageIsRequest, messageInfo);
                 }
             } catch (Exception e) {
